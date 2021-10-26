@@ -2,11 +2,23 @@
 {
     Properties
     {
+
+        _brightness("brightness", float) = 0
+        _color("color", Color) = (.25, .5, .5, 1)
     }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
+
+        // additive blending
+        Blend One One
+
+        // disable blackface bulling
+        Cull Off
+
+        // don't write to the depth buffer
+        ZWrite Off
 
         Pass
         {
@@ -17,6 +29,7 @@
             #include "UnityCG.cginc"
 
             #pragma target 5.0
+
 
             struct v2f
             {
@@ -43,9 +56,18 @@
                 return output;
             }
 
+            float4 _color;
+            float _brightness;
+
+
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 col = fixed4(0.3, 0.5, 0.9, 1.0);
+                //col = _brightness * _color;
+
+                //fixed4 col = fixed4(0.3, 0.5, 0.9, 1.0);
+
+                fixed4 col = _color;
+                 col *= _brightness;
                 return col;
             }
             ENDCG
