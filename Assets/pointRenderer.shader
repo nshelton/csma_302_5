@@ -2,12 +2,20 @@
 {
     Properties
     {
+        _color("color", Color) = (1, 0, 0, 1)
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "Queue" = "Transparent" "RenderType" = "Transparent" }
         LOD 100
 
+        // additive blending
+        Blend One One
+        // disable blackface bulling
+        Cull Off
+        // don't write to the depth buffer
+        ZWrite Off
+        
         Pass
         {
             CGPROGRAM
@@ -30,6 +38,8 @@
                 float life;
             };
 
+            fixed4 _color;
+
             StructuredBuffer<Particle> _Particles;
 
             v2f vert (uint vertex_id : SV_VertexID, uint instance_id : SV_InstanceID)
@@ -45,7 +55,7 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 col = fixed4(0.3, 0.5, 0.9, 1.0);
+                fixed4 col = _color;
                 return col;
             }
             ENDCG
