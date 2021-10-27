@@ -26,6 +26,7 @@ public class ParticleSystem : MonoBehaviour
     [SerializeField] public float _noiseAmplitude;
     [SerializeField] public float _noiseFrequency;
     [SerializeField] public float _noiseSpeed;
+    [SerializeField] public float _G;
     [SerializeField, Range(0.1f, 1f)] public float _drag;
 
     private int _kernelId;
@@ -79,7 +80,10 @@ public class ParticleSystem : MonoBehaviour
         _particleSimulation.SetFloat("_noiseFrequency", _noiseFrequency);
         _particleSimulation.SetFloat("_noiseSpeed", _noiseSpeed);
         _particleSimulation.SetFloat("_drag", _drag);
-
+        _particleSimulation.SetInt("_numParticles", _numParticles);
+        _particleSimulation.SetFloat("_G", _G);
+        
+        _particleMaterial.SetFloat("_maxAge", _maxAge);
 
         _particleSimulation.Dispatch(_kernelId, Mathf.CeilToInt((float)_numParticles / 128f), 1, 1);
     }
