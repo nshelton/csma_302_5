@@ -1,123 +1,153 @@
 Using pre-set license
 Built from '2020.3/staging' branch; Version is '2020.3.16f1 (049d6eca3c44) revision 302446'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home; OS build 19043.1288; Version 2009; 64bit' Language: 'en' Physical Memory: 16218 MB
+OS: 'Windows 10 Pro; OS build 22454.1000; Version 2009; 64bit' Language: 'en' Physical Memory: 16302 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
-C:\Users\15103\Desktop\environment\2020.3.16f1\Editor\Unity.exe
+C:\Program Files\Unity\Hub\Editor\2020.3.16f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-F:/Documents/Woodbury/2021 Fall/CSMA 302 - Advanced Programming/Assignments + Projects/Assignment 5/csma_302_5
+C:/Users/H From Pluto/Documents/GitHub/csma_302_5
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-52635
-Successfully changed project path to: F:/Documents/Woodbury/2021 Fall/CSMA 302 - Advanced Programming/Assignments + Projects/Assignment 5/csma_302_5
-F:/Documents/Woodbury/2021 Fall/CSMA 302 - Advanced Programming/Assignments + Projects/Assignment 5/csma_302_5
+64137
+Successfully changed project path to: C:/Users/H From Pluto/Documents/GitHub/csma_302_5
+C:/Users/H From Pluto/Documents/GitHub/csma_302_5
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 54.45 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 25.40 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.16f1 (049d6eca3c44)
-[Subsystems] Discovering subsystems at path C:/Users/15103/Desktop/environment/2020.3.16f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path F:/Documents/Woodbury/2021 Fall/CSMA 302 - Advanced Programming/Assignments + Projects/Assignment 5/csma_302_5/Assets
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.16f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/H From Pluto/Documents/GitHub/csma_302_5/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: Intel(R) UHD Graphics 620 (ID=0x5917)
+    Renderer: NVIDIA GeForce GTX 980 Ti (ID=0x17c8)
     Vendor:   
-    VRAM:     8109 MB
-    Driver:   26.20.100.7926
+    VRAM:     6097 MB
+    Driver:   30.0.15.1010
 Initialize mono
-Mono path[0] = 'C:/Users/15103/Desktop/environment/2020.3.16f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Users/15103/Desktop/environment/2020.3.16f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'C:/Users/15103/Desktop/environment/2020.3.16f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56392
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.16f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.16f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.16f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56824
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Users/15103/Desktop/environment/2020.3.16f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002750 seconds.
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 275.63 ms, found 2 plugins.
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.16f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001598 seconds.
+MethodAccessException: Method `UnityEditor.Modules.DefaultPlatformSupportModule..ctor()' is inaccessible from method `UnityEditor.Xbox360.TargetExtension..ctor()'
+  at (wrapper managed-to-native) System.Object.__icall_wrapper_mono_throw_method_access(intptr,intptr)
+  at UnityEditor.Xbox360.TargetExtension..ctor () [0x00000] in <2cf2aca89e8947b1a9ebee8883a00032>:0 
+  at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
+Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00014] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceMono (System.Boolean nonPublic) [0x000a8] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceSlow (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00009] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.Modules.ModuleManager.RegisterPlatformSupportModules () [0x0003b] in <ef3b6bf002d8435a97b4e938f6c49b02>:0 
+  at UnityEditor.Modules.ModuleManager.get_platformSupportModules () [0x00013] in <ef3b6bf002d8435a97b4e938f6c49b02>:0 
+  at UnityEditor.Modules.ModuleManager.InitializePlatformSupportModules () [0x00022] in <ef3b6bf002d8435a97b4e938f6c49b02>:0 
+
+Refreshing native plugins compatible for Editor in 23.29 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.762 seconds
+- Completed reload, in  0.991 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1762ms)
-		BeginReloadAssembly (87ms)
+	ReloadAssembly (991ms)
+		BeginReloadAssembly (51ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (747ms)
-			LoadAssemblies (83ms)
+		EndReloadAssembly (327ms)
+			LoadAssemblies (49ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (196ms)
+			SetupTypeCache (128ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (34ms)
-			SetupLoadedEditorAssemblies (431ms)
+			RebuildScriptCaches (24ms)
+			SetupLoadedEditorAssemblies (129ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
+				InitializePlatformSupportModulesInManaged (11ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (276ms)
-				BeforeProcessingInitializeOnLoad (20ms)
-				ProcessInitializeOnLoadAttributes (98ms)
-				ProcessInitializeOnLoadMethodAttributes (33ms)
+				RefreshPlugins (23ms)
+				BeforeProcessingInitializeOnLoad (11ms)
+				ProcessInitializeOnLoadAttributes (64ms)
+				ProcessInitializeOnLoadMethodAttributes (20ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
-Platform modules already initialized, skipping
-Registering precompiled user dll's ...
-Registered in 0.004274 seconds.
-Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.32 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.312 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1313ms)
-		BeginReloadAssembly (181ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (10ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (24ms)
-		EndReloadAssembly (1042ms)
-			LoadAssemblies (97ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (323ms)
-			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (50ms)
-			SetupLoadedEditorAssemblies (458ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (8ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (0ms)
-				BeforeProcessingInitializeOnLoad (92ms)
-				ProcessInitializeOnLoadAttributes (342ms)
-				ProcessInitializeOnLoadMethodAttributes (5ms)
-				AfterProcessingInitializeOnLoad (10ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
-Platform modules already initialized, skipping
-========================================================================
-Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Registering precompiled user dll's ...
+Registered in 0.003496 seconds.
+Begin MonoManager ReloadAssembly
+MethodAccessException: Method `UnityEditor.Modules.DefaultPlatformSupportModule..ctor()' is inaccessible from method `UnityEditor.Xbox360.TargetExtension..ctor()'
+  at (wrapper managed-to-native) System.Object.__icall_wrapper_mono_throw_method_access(intptr,intptr)
+  at UnityEditor.Xbox360.TargetExtension..ctor () [0x00000] in <2cf2aca89e8947b1a9ebee8883a00032>:0 
+  at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
+Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00014] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceMono (System.Boolean nonPublic) [0x000a8] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceSlow (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00009] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.Modules.ModuleManager.RegisterPlatformSupportModules () [0x0003b] in <ef3b6bf002d8435a97b4e938f6c49b02>:0 
+  at UnityEditor.Modules.ModuleManager.get_platformSupportModules () [0x00013] in <ef3b6bf002d8435a97b4e938f6c49b02>:0 
+  at UnityEditor.Modules.ModuleManager.InitializePlatformSupportModules () [0x00022] in <ef3b6bf002d8435a97b4e938f6c49b02>:0 
+
 Refreshing native plugins compatible for Editor in 0.31 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.885 seconds
+Domain Reload Profiling:
+	ReloadAssembly (886ms)
+		BeginReloadAssembly (115ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (16ms)
+		EndReloadAssembly (721ms)
+			LoadAssemblies (65ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (235ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (36ms)
+			SetupLoadedEditorAssemblies (303ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (11ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (61ms)
+				ProcessInitializeOnLoadAttributes (218ms)
+				ProcessInitializeOnLoadMethodAttributes (4ms)
+				AfterProcessingInitializeOnLoad (6ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Native extension for WindowsStandalone target not found
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Refreshing native plugins compatible for Editor in 0.41 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1399 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 65.6 MB.
-System memory in use after: 65.6 MB.
+System memory in use before: 65.1 MB.
+System memory in use after: 65.2 MB.
 
 Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 1832.
-Total: 4.915900 ms (FindLiveObjects: 0.162800 ms CreateObjectMapping: 0.040200 ms MarkObjects: 4.585300 ms  DeleteObjects: 0.125900 ms)
+Total: 2.376100 ms (FindLiveObjects: 0.132600 ms CreateObjectMapping: 0.040300 ms MarkObjects: 2.145800 ms  DeleteObjects: 0.056400 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -133,14 +163,126 @@ AssetImportParameters requested are different than current active one (requested
 Received Import Request.
   path: Assets/particleSim.compute
   artifactKey: Guid(09c97158d3907f8458966e0faa449536) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/particleSim.compute using Guid(09c97158d3907f8458966e0faa449536) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f3b6c382a2ca8285babe52aaaee5304') in 0.062255 seconds 
-  Import took 0.064819 seconds .
+Start importing Assets/particleSim.compute using Guid(09c97158d3907f8458966e0faa449536) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71e4d80eb9ae792ed6557e85024cfd97') in 0.042463 seconds 
+  Import took 0.044403 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000304 seconds.
+  Time since last request: 0.000195 seconds.
   path: Assets/pointMaterial.mat
   artifactKey: Guid(ed294403ecb55f14281bbfafa7fc3c8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/pointMaterial.mat using Guid(ed294403ecb55f14281bbfafa7fc3c8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c869b441b7ebc8ae388261d7fe3d55f6') in 0.191437 seconds 
-  Import took 0.193675 seconds .
+Start importing Assets/pointMaterial.mat using Guid(ed294403ecb55f14281bbfafa7fc3c8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c869b441b7ebc8ae388261d7fe3d55f6') in 0.089143 seconds 
+  Import took 0.091089 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 3018.771679 seconds.
+  path: Assets/pointRenderer.shader
+  artifactKey: Guid(8886edae317d0704e806113b443ff2df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/pointRenderer.shader using Guid(8886edae317d0704e806113b443ff2df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '406b70320a38e3c43d80286e961f50b1') in 0.023766 seconds 
+  Import took 0.053758 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.050607 seconds.
+  path: Assets/pointRenderer.shader
+  artifactKey: Guid(8886edae317d0704e806113b443ff2df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/pointRenderer.shader using Guid(8886edae317d0704e806113b443ff2df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '406b70320a38e3c43d80286e961f50b1') in 0.004576 seconds 
+  Import took 0.007330 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 358.579505 seconds.
+  path: Assets/pointRenderer.shader
+  artifactKey: Guid(8886edae317d0704e806113b443ff2df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/pointRenderer.shader using Guid(8886edae317d0704e806113b443ff2df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bc1f1f9c8a2e81a07ee3f5e6c4a9f87') in 0.003312 seconds 
+  Import took 0.005700 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 37.808912 seconds.
+  path: Assets/pointRenderer.shader
+  artifactKey: Guid(8886edae317d0704e806113b443ff2df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/pointRenderer.shader using Guid(8886edae317d0704e806113b443ff2df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '295941d999702beee00e940d4df7b84b') in 0.004601 seconds 
+  Import took 0.007257 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.998455 seconds.
+  path: Assets/SampleScene.unity
+  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SampleScene.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dcd52c9970d329a23dc7fc5ff61100ec') in 0.010219 seconds 
+  Import took 0.012256 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.109817 seconds.
+Begin MonoManager ReloadAssembly
+MethodAccessException: Method `UnityEditor.Modules.DefaultPlatformSupportModule..ctor()' is inaccessible from method `UnityEditor.Xbox360.TargetExtension..ctor()'
+  at (wrapper managed-to-native) System.Object.__icall_wrapper_mono_throw_method_access(intptr,intptr)
+  at UnityEditor.Xbox360.TargetExtension..ctor () [0x00000] in <2cf2aca89e8947b1a9ebee8883a00032>:0 
+  at (wrapper managed-to-native) System.Reflection.MonoCMethod.InternalInvoke(System.Reflection.MonoCMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00002] in <695d1cc93cca45069c528c15c9fdd749>:0 
+Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
+  at System.Reflection.MonoCMethod.InternalInvoke (System.Object obj, System.Object[] parameters) [0x00014] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceMono (System.Boolean nonPublic) [0x000a8] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceSlow (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00009] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.RuntimeType.CreateInstanceDefaultCtor (System.Boolean publicOnly, System.Boolean skipCheckThis, System.Boolean fillCache, System.Threading.StackCrawlMark& stackMark) [0x00027] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type, System.Boolean nonPublic) [0x00020] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Activator.CreateInstance (System.Type type) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.Modules.ModuleManager.RegisterPlatformSupportModules () [0x0003b] in <ef3b6bf002d8435a97b4e938f6c49b02>:0 
+  at UnityEditor.Modules.ModuleManager.get_platformSupportModules () [0x00013] in <ef3b6bf002d8435a97b4e938f6c49b02>:0 
+  at UnityEditor.Modules.ModuleManager.InitializePlatformSupportModules () [0x00022] in <ef3b6bf002d8435a97b4e938f6c49b02>:0 
+
+Refreshing native plugins compatible for Editor in 0.31 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.022 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1024ms)
+		BeginReloadAssembly (161ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (12ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (72ms)
+		EndReloadAssembly (808ms)
+			LoadAssemblies (78ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (233ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (30ms)
+			SetupLoadedEditorAssemblies (390ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (12ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (58ms)
+				ProcessInitializeOnLoadAttributes (310ms)
+				ProcessInitializeOnLoadMethodAttributes (3ms)
+				AfterProcessingInitializeOnLoad (6ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.41 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1392 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 68.2 MB.
+System memory in use after: 68.3 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 1874.
+Total: 2.522600 ms (FindLiveObjects: 0.247100 ms CreateObjectMapping: 0.086800 ms MarkObjects: 2.169400 ms  DeleteObjects: 0.018100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

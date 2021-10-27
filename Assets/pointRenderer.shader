@@ -2,10 +2,12 @@
 {
     Properties
     {
+        _Color("MainColor", Color) = (1, 0, 0, 1)
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" }
+        Blend One One
         LOD 100
 
         Pass
@@ -43,10 +45,11 @@
                 return output;
             }
 
+            fixed4 _Color;
+
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 col = fixed4(0.3, 0.5, 0.9, 1.0);
-                return col;
+                return _Color;
             }
             ENDCG
         }
