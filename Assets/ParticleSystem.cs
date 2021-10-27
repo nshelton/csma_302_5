@@ -80,7 +80,6 @@ public class ParticleSystem : MonoBehaviour
         _particleSimulation.SetFloat("_noiseSpeed", _noiseSpeed);
         _particleSimulation.SetFloat("_drag", _drag);
 
-
         _particleSimulation.Dispatch(_kernelId, Mathf.CeilToInt((float)_numParticles / 128f), 1, 1);
     }
 }

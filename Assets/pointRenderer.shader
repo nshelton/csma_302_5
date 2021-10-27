@@ -2,11 +2,13 @@
 {
     Properties
     {
+        _Color ("Color", Color) = (1,1,1,1)
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"= "Transparent" }
         LOD 100
+        Blend One One   // additive blending
 
         Pass
         {
@@ -32,6 +34,8 @@
 
             StructuredBuffer<Particle> _Particles;
 
+            fixed4 _Color;
+
             v2f vert (uint vertex_id : SV_VertexID, uint instance_id : SV_InstanceID)
             {
                 v2f output = (v2f)0;
@@ -45,7 +49,7 @@
 
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 col = fixed4(0.3, 0.5, 0.9, 1.0);
+                fixed4 col = _Color;
                 return col;
             }
             ENDCG
