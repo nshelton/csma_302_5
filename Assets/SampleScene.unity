@@ -392,8 +392,8 @@ MonoBehaviour:
   _numParticles: 10000
   _maxAge: 2.23
   _initialVelocity: {x: 0, y: 1.2, z: 0}
-  _particleMaterial: {fileID: 2100000, guid: ed294403ecb55f14281bbfafa7fc3c8f, type: 2}
-  _particleSimulation: {fileID: 7200000, guid: 09c97158d3907f8458966e0faa449536, type: 3}
+  _particleMaterial: {fileID: 2100000, guid: 0bac97c446a9f6246a0b99ec080d1efa, type: 2}
+  _particleSimulation: {fileID: 7200000, guid: 0a64205bcc94d4a499eea59149287169, type: 3}
   _noiseAmplitude: 7.08
   _noiseFrequency: 1.06
   _noiseSpeed: 0.1
