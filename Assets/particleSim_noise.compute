@@ -1,0 +1,70 @@
+﻿#pragma kernel CSMain
+
+
+#include "Packages/jp.keijiro.noiseshader/Shader/ClassicNoise3D.hlsl"
+
+struct Particle
+{
+    float3 position;
+    float3 velocity;
+    float age;
+};
+
+RWStructuredBuffer<Particle> _Particles;
+float _dt;
+float _time;
+float _maxAge;
+float3 _initialVelocity;
+
+float _noiseAmplitude;
+float _noiseFrequency;
+float _noiseSpeed;
+float _drag;
+
+uint rng_state;
+uint rand_xorshift()
+{
+    // Xorshift algorithm from George Marsaglia's paper
+    rng_state ^= (rng_state << 13);
+    rng_state ^= (rng_state >> 17);
+    rng_state ^= (rng_state << 5);
+    return rng_state;
+}
+
+float randomFloat()
+{
+    return float(rand_xorshift()) * (1.0 / 4294967296.0);
+}
+
+void spawn(uint id) 
+{
+    float x = randomFloat() * 2 - 1;
+    float y = randomFloat() * 2 - 1;
+    float z = randomFloat() * 2 - 1;
+
+    _Particles[id].position = float3(x, y, z);
+    _Particles[id].velocity = _initialVelocity;
+    _Particles[id].age = randomFloat() * _maxAge;
+}
+
+[numthreads(128, 1, 1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    rng_state = id.x + _time;
+
+    if (_Particles[id.x].age > _maxAge) {
+        spawn(id.x);
+    }
+    else {
+        float3 pos = _Particles[id.x].position;
+        _Particles[id.x].velocity += _noiseAmplitude * float3(
+            ClassicNoise(pos * _noiseFrequency + _noiseSpeed * _time),
+            ClassicNoise(pos * _noiseFrequency + _noiseSpeed * _time + 137.43),
+            ClassicNoise(pos * _noiseFrequency + _noiseSpeed * _time + 933.21));
+
+        _Particles[id.x].position += _Particles[id.x].velocity * _dt;
+        _Particles[id.x].age += _dt;
+        _Particles[id.x].velocity *= _drag;
+    }
+
+}

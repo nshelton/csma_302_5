@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ParticleSystem : MonoBehaviour
 {
-
     struct Particle
     {
         public Vector3 position; //12 bytes :4 bytes per float * 3 floats
@@ -18,15 +17,29 @@ public class ParticleSystem : MonoBehaviour
 
     [SerializeField] public int _numParticles = 10000;
     [SerializeField, Range(0.1f, 10)] public float _maxAge = 5;
-    [SerializeField] public Vector3 _initialVelocity = new Vector3(0,1,0);
+    [SerializeField] public Vector3 _initialVelocity = new Vector3(0, 1, 0);
 
     [SerializeField] Material _particleMaterial;
     [SerializeField] ComputeShader _particleSimulation;
 
+    //noise field
+    [Header("noise field")]
     [SerializeField] public float _noiseAmplitude;
     [SerializeField] public float _noiseFrequency;
     [SerializeField] public float _noiseSpeed;
+
+    //n-body
+    [Header("n-body")]
+    [SerializeField] public float _G;
     [SerializeField, Range(0.1f, 1f)] public float _drag;
+
+    //boids
+    [Header("boids")]
+    [SerializeField] public float _separationRadius = 1;
+    [SerializeField, Range(0f, 1f)] public float _separationFactor = 1;
+    [SerializeField] public float _cohesionRadius = 2;
+    [SerializeField, Range(0f, 1f)] public float _cohesionFactor = 1;
+    [SerializeField, Range(0f, 1f)] public float _alignmentFactor = 0.5f;
 
     private int _kernelId;
 
@@ -79,6 +92,16 @@ public class ParticleSystem : MonoBehaviour
         _particleSimulation.SetFloat("_noiseFrequency", _noiseFrequency);
         _particleSimulation.SetFloat("_noiseSpeed", _noiseSpeed);
         _particleSimulation.SetFloat("_drag", _drag);
+        _particleSimulation.SetInt("_numParticles", _numParticles);
+        _particleSimulation.SetFloat("_G", _G);
+
+        _particleSimulation.SetFloat("_separationRadius", _separationRadius);
+        _particleSimulation.SetFloat("_separationFactor", _separationFactor);
+        _particleSimulation.SetFloat("_cohesionRadius", _cohesionRadius);
+        _particleSimulation.SetFloat("_cohesionFactor", _cohesionFactor);
+        _particleSimulation.SetFloat("_alignmentFactor", _alignmentFactor);
+
+        _particleMaterial.SetFloat("_maxAge", _maxAge);
 
         _particleSimulation.Dispatch(_kernelId, Mathf.CeilToInt((float)_numParticles / 128f), 1, 1);
     }

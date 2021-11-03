@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pointMaterial
-  m_Shader: {fileID: 4800000, guid: 8886edae317d0704e806113b443ff2df, type: 3}
+  m_Name: OpaquePointMaterial
+  m_Shader: {fileID: 4800000, guid: 45b31c9e43c7aa74da04e5736cbb3796, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -72,9 +72,12 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _brightness: 0.05
+    - _brightness: 0.19
+    - _scale: 0.01
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _color: {r: 0.8490566, g: 0.07742961, b: 0.3346387, a: 1}
+    - _color0: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _color1: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_BuildTextureStacks: []

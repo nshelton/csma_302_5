@@ -1,8 +1,5 @@
 ﻿#pragma kernel CSMain
 
-
-#include "Packages/jp.keijiro.noiseshader/Shader/ClassicNoise3D.hlsl"
-
 struct Particle
 {
     float3 position;
@@ -20,6 +17,8 @@ float _noiseAmplitude;
 float _noiseFrequency;
 float _noiseSpeed;
 float _drag;
+int _numParticles;
+float _G;
 
 uint rng_state;
 uint rand_xorshift()
@@ -43,11 +42,16 @@ void spawn(uint id)
     float z = randomFloat() * 2 - 1;
 
     _Particles[id].position = float3(x, y, z);
-    _Particles[id].velocity = _initialVelocity;
+
+    x = randomFloat() * 2 - 1;
+    y = randomFloat() * 2 - 1;
+    z = randomFloat() * 2 - 1;
+
+    _Particles[id].velocity = float3(x, y, z);
     _Particles[id].age = randomFloat() * _maxAge;
 }
 
-[numthreads(128,1,1)]
+[numthreads(128, 1, 1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     rng_state = id.x + _time;
@@ -57,14 +61,32 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     }
     else {
         float3 pos = _Particles[id.x].position;
-        _Particles[id.x].velocity += _noiseAmplitude * float3(
-            ClassicNoise(pos * _noiseFrequency + _noiseSpeed * _time),
-            ClassicNoise(pos * _noiseFrequency + _noiseSpeed * _time + 137.43),
-            ClassicNoise(pos * _noiseFrequency + _noiseSpeed * _time + 933.21));
+        
+        float3 force = (float3) 0.0;
+
+        for (uint i = 0; i < _numParticles; i++) {
+            if (i == id.x)
+                continue;
+
+            float3 direction = _Particles[i].position - _Particles[id.x].position;
+
+            float r = length(direction);
+
+            if (r > 0.0001) {
+                force += normalize(direction) * _G * (1.0 / r * r);
+            }
+        }
+
+        _Particles[id.x].velocity += force * _dt;
+
+        float maxVelocity = 1000;
+
+        if (length(_Particles[id.x].velocity) > maxVelocity) {
+            _Particles[id.x].velocity = normalize(_Particles[id.x].velocity) * maxVelocity;
+        }
 
         _Particles[id.x].position += _Particles[id.x].velocity * _dt;
         _Particles[id.x].age += _dt;
         _Particles[id.x].velocity *= _drag;
     }
-
 }
