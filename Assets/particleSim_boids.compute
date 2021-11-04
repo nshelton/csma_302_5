@@ -55,7 +55,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 
     //cohesion
     float3 cohesionCenter = float3(0, 0, 0);
-    float numNeighbors = 0;
+    numNeighbors = 0;
 
     for (int i = 0; i < _numParticles; i++) {
         if (i == id.x)
@@ -64,7 +64,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         float d = distance(_Particles[id.x].position, _Particles[i].position);
 
         if (d < _cohesionRadius) {
-            cohesionCenter += _Particles[i],position;
+            cohesionCenter += _Particles[i].position;
             numNeighbors++;
         }
     }
@@ -80,7 +80,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 
     //alignment
     float3 avgDirection = float3(0, 0, 0);
-    float numNeighbors = 0;
+    numNeighbors = 0;
 
     for (int i = 0; i < _numParticles; i++) {
         if (i == id.x)
@@ -102,7 +102,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 
             myDirection = lerp(myDirection, avgDirection, _alignmentFactor);
 
-            _Particles[id.x].veloctiy = myDirection * mySpeed;
+            _Particles[id.x].velocity = myDirection * mySpeed;
         }
 
         _Particles[id.x].position += _Particles[id.x].velocity * _dt;
@@ -131,6 +131,6 @@ void CSMain (uint3 id : SV_DispatchThreadID)
             _Particles[id.x].position.z += 30;
         }
 
-        _Particles[id.x].velocity += _drag;
+        _Particles[id.x].velocity *= _drag;
 
 }

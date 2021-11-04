@@ -47,8 +47,8 @@
 
             StructuredBuffer<Particle> _Particles;
             float _maxAge;
-            float _Color0;
-            float _Color1;
+            float4 _Color0;
+            float4 _Color1;
 
             v2g vert(uint vertex_id : SV_VertexID, uint instance_id : SV_InstanceID)
             {
@@ -109,9 +109,11 @@
 
             fixed4 frag(g2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv) * i.color;
+                //fixed4 col = tex2D(_MainTex, i.uv) * i.color;
 
-                clip(Luminance(col) - 0.1);
+                fixed4 col = fixed4(1, 0, 0, 1);
+
+                //clip(Luminance(col) - 0.1);
 
                 return col;
             }
