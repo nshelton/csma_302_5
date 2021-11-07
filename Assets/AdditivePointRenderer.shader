@@ -115,7 +115,9 @@
 
             fixed4 frag(g2f i) : SV_Target
             {
+                //won't show anything with this line
                 //fixed4 col = tex2D(_MainTex, i.uv) * i.color;
+                
                 fixed4 col = fixed4(1, 0, 0, 1);
                 
                 return col;

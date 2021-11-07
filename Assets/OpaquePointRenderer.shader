@@ -107,14 +107,19 @@
                 triStream.RestartStrip();
             }
 
+            float4 _color0;
+            float4 _color1;
+
             fixed4 frag(g2f i) : SV_Target
             {
                 //fixed4 col = tex2D(_MainTex, i.uv) * i.color;
-
-                fixed4 col = fixed4(1, 0, 0, 1);
-
                 //clip(Luminance(col) - 0.1);
 
+                //fixed4 col = fixed4(1, 0, 0, 1);
+
+                fixed4 col = tex2D(_MainTex, i.uv);
+                col = _color0 * sin(_Time.z / 5);
+           
                 return col;
             }
             ENDCG

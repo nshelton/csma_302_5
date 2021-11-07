@@ -107,28 +107,28 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 
         _Particles[id.x].position += _Particles[id.x].velocity * _dt;
 
-        if (_Particles[id.x].position.x > 30) {
-            _Particles[id.x].position.x -= 30;
+        if (_Particles[id.x].position.x > 20) {
+            _Particles[id.x].position.x -= 20;
         }
 
         if (_Particles[id.x].position.x < 0) {
-            _Particles[id.x].position.x += 30;
+            _Particles[id.x].position.x += 20;
         }
 
-        if (_Particles[id.x].position.y > 30) {
-            _Particles[id.x].position.y -= 30;
+        if (_Particles[id.x].position.y > 20) {
+            _Particles[id.x].position.y -= 20;
         }
 
         if (_Particles[id.x].position.y < 0) {
-            _Particles[id.x].position.y += 30;
+            _Particles[id.x].position.y += 20;
         }
 
-        if (_Particles[id.x].position.z > 10) {
-            _Particles[id.x].position.z -= 30;
+        if (_Particles[id.x].position.z > 20) {
+            _Particles[id.x].position.z -= 20;
         }
 
         if (_Particles[id.x].position.z < 0) {
-            _Particles[id.x].position.z += 30;
+            _Particles[id.x].position.z += 20;
         }
 
         _Particles[id.x].velocity *= _drag;

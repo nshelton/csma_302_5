@@ -389,10 +389,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c60a6d8f5ea234fa02ec3e09ec04dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numParticles: 10000
+  _numParticles: 1000
   _maxAge: 2.23
   _initialVelocity: {x: 0, y: 1.2, z: 0}
-  _particleMaterial: {fileID: 2100000, guid: ed294403ecb55f14281bbfafa7fc3c8f, type: 2}
+  _particleMaterial: {fileID: 2100000, guid: 0bac97c446a9f6246a0b99ec080d1efa, type: 2}
   _particleSimulation: {fileID: 7200000, guid: 0a64205bcc94d4a499eea59149287169, type: 3}
   _noiseAmplitude: 7.08
   _noiseFrequency: 1.06
