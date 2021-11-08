@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pointMaterial
+  m_Name: AdditivePointMaterial
   m_Shader: {fileID: 4800000, guid: 8886edae317d0704e806113b443ff2df, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -76,7 +76,7 @@ Material:
     m_Colors:
     - _Color: {r: 0.20247419, g: 0.20893554, b: 0.4716981, a: 0.1764706}
     - _Color0: {r: 1, g: 0, b: 0, a: 1}
-    - _Color1: {r: 0, g: 0.5803922, b: 0.74509805, a: 1}
+    - _Color1: {r: 1, g: 0, b: 0.79420185, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _color: {r: 1, g: 0, b: 0.82783556, a: 1}
   m_BuildTextureStacks: []

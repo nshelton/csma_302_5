@@ -4,7 +4,7 @@
     {
         _Color0("color0", color) = (0.5, 0.5, 0.5)
         _Color1("color1", color) = (0.5, 0.0, 0.5)
-        _scale("scale", Range (0.01, 0.1)) = 0.01
+        _scale("scale", Range (0.01, 0.2)) = 0.01
         _MainTex("Texture", 2D) = "white" {}
 
     }
