@@ -4,16 +4,14 @@
     {
         _Color0("color0", color) = (0.5, 0.5, 0.5)
         _Color1("color1", color) = (0.5, 0.0, 0.5)
-        _scale("scale", Range (0.01, 0.1)) = 0.01
+        _scale("scale", Range (0.01, 1)) = 0.01
         _MainTex("Texture", 2D) = "white" {}
 
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" }
+        Tags { "RenderType"="Opaque" }
         LOD 100
-        Blend One One
-        ZWrite Off
 
         Pass
         {
@@ -112,6 +110,7 @@
             fixed4 frag(g2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv) * i.color;
+                clip(Luminance(col) - 0.1);
                 return col;
             }
             ENDCG

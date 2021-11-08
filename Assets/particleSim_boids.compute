@@ -1,0 +1,171 @@
+﻿#pragma kernel CSMain
+
+/*
+    My boids have a pacman texture on them :P
+*/
+
+struct Particle
+{
+    float3 position;
+    float3 velocity;
+    float age;
+};
+
+#define EPS 0.00001
+
+RWStructuredBuffer<Particle> _Particles;
+float _dt;
+float _time;
+float _maxAge;
+float3 _initialVelocity;
+
+float _noiseAmplitude;
+float _noiseFrequency;
+float _noiseSpeed;
+float _drag;
+int _numParticles;
+float _G;
+
+float _separationRadius;
+float _separationFactor;
+float _cohesionRadius;
+float _cohesionFactor;
+float _alignmentFactor;
+
+uint rng_state;
+uint rand_xorshift()
+{
+    // Xorshift algorithm from George Marsaglia's paper
+    rng_state ^= (rng_state << 13);
+    rng_state ^= (rng_state >> 17);
+    rng_state ^= (rng_state << 5);
+    return rng_state;
+}
+
+float randomFloat()
+{
+    return float(rand_xorshift()) * (1.0 / 4294967296.0);
+}
+
+void spawn(uint id) 
+{
+    float x = randomFloat() * 2 - 1;
+    float y = randomFloat() * 2 - 1;
+    float z = randomFloat() * 2 - 1;
+
+    _Particles[id].position = float3(x, y, z);
+    
+     x = randomFloat() * 2 - 1;
+     y = randomFloat() * 2 - 1;
+     z = randomFloat() * 2 - 1;
+
+    _Particles[id].velocity = float3(x, y, z);
+    _Particles[id].age = randomFloat() * _maxAge;
+}
+
+[numthreads(128,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    
+    //-----------------------------------------separation-----------------------------------------
+    float3 separationDirection = float3(0, 0, 0);
+    float numNeighbors = 0;
+
+    for (int i = 0; i < _numParticles; i++) {
+        if (i == id.x)
+            continue;
+                
+        float d = distance(_Particles[id.x].position, _Particles[i].position);
+
+        if(d < _separationRadius){
+            separationDirection += normalize(_Particles[id.x].position - _Particles[i].position);
+            numNeighbors++;
+        }
+    }
+
+    if(numNeighbors > 0){
+        separationDirection /= numNeighbors;
+        _Particles[id.x].velocity += separationDirection * _separationFactor;
+    }
+
+    //-----------------------------------------cohesion-----------------------------------------
+    float3 cohesionCenter = float3(0, 0, 0);
+    numNeighbors = 0;
+
+    for (int i = 0; i < _numParticles; i++) {
+        if (i == id.x)
+            continue;
+                
+        float d = distance(_Particles[id.x].position, _Particles[i].position);
+
+        if(d < _cohesionRadius){
+            cohesionCenter += _Particles[i].position;
+            numNeighbors++;
+        }
+    }
+
+    if(numNeighbors > 0){
+        cohesionCenter /= numNeighbors;
+        if(distance(cohesionCenter, _Particles[id.x].position) > EPS){
+            float3 direction = cohesionCenter - _Particles[id.x].position;
+            _Particles[id.x].velocity += direction * _cohesionFactor * _dt;
+        }
+    }
+
+    //-----------------------------------------alignment-----------------------------------------
+    numNeighbors = 0;
+    float3 avgDirection = float3(0, 0, 0);
+    for (int i = 0; i < _numParticles; i++) {
+        if (i == id.x)
+            continue;
+
+        float d = distance(_Particles[id.x].position, _Particles[i].position);
+
+        if(d < _cohesionRadius && length(_Particles[i].velocity) > EPS){
+            avgDirection += normalize(_Particles[i].velocity);
+            numNeighbors++;
+        }
+
+    }
+
+    if(numNeighbors > 0){
+        avgDirection /= numNeighbors;
+
+        float3 myDirection = normalize(_Particles[id.x].velocity);
+        float mySpeed = length(_Particles[id.x].velocity);
+
+        myDirection = lerp(myDirection, avgDirection, _alignmentFactor);
+
+        _Particles[id.x].velocity = myDirection * mySpeed;
+    }
+
+    _Particles[id.x].position += _Particles[id.x].velocity * _dt;
+
+    //-----------------------------------------wrapping-----------------------------------------
+    if(_Particles[id.x].position.x > 20){
+        _Particles[id.x].position.x -= 20;
+    }
+
+    if(_Particles[id.x].position.x < 0){
+        _Particles[id.x].position.x += 20;
+    }
+
+    if(_Particles[id.x].position.y > 20){
+        _Particles[id.x].position.y -= 20;
+    }
+
+    if(_Particles[id.x].position.y < 0){
+        _Particles[id.x].position.y += 20;
+    }
+
+    if(_Particles[id.x].position.z > 20){
+        _Particles[id.x].position.z -= 20;
+    }
+
+    if(_Particles[id.x].position.z < 0){
+        _Particles[id.x].position.z += 20;
+    }
+
+    _Particles[id.x].velocity *= _drag;
+    _Particles[id.x].velocity -= _Particles[id.x].position * _G; 
+}

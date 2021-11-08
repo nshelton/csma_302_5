@@ -29,6 +29,12 @@ public class ParticleSystem : MonoBehaviour
     [SerializeField] public float _G;
     [SerializeField, Range(0.1f, 1f)] public float _drag;
 
+    [SerializeField] public float _separationRadius = 1;
+    [SerializeField, Range(0f, 1f)] public float _separationFactor = 1;
+    [SerializeField] public float _cohesionRadius = 2;
+    [SerializeField, Range(0f, 1f)] public float _cohesionFactor = 1;
+    [SerializeField, Range(0f, 1f)] public float _alignmentFactor = 0.5f;
+
     private int _kernelId;
 
     void Start()
@@ -82,6 +88,12 @@ public class ParticleSystem : MonoBehaviour
         _particleSimulation.SetFloat("_drag", _drag);
         _particleSimulation.SetInt("_numParticles", _numParticles);
         _particleSimulation.SetFloat("_G", _G);
+
+        _particleSimulation.SetFloat("_separationRadius", _separationRadius);
+        _particleSimulation.SetFloat("_separationFactor", _separationFactor);
+        _particleSimulation.SetFloat("_cohesionRadius", _cohesionRadius);
+        _particleSimulation.SetFloat("_cohesionFactor", _cohesionFactor);
+        _particleSimulation.SetFloat("_alignmentFactor", _alignmentFactor);
         
         _particleMaterial.SetFloat("_maxAge", _maxAge);
 
