@@ -1,0 +1,162 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+
+#include "Packages/jp.keijiro.noiseshader/Shader/ClassicNoise3D.hlsl"
+#define EPS 0.00001
+
+struct Particle
+{
+    float3 position;
+    float3 velocity;
+    float age;
+};
+
+RWStructuredBuffer<Particle> _Particles;
+int _numParticles;
+float _dt;
+float _time;
+float _maxAge;
+float3 _initialVelocity;
+
+float _noiseAmplitude;
+float _noiseFrequency;
+float _noiseSpeed;
+float _drag;
+
+uint rng_state;
+uint rand_xorshift()
+{
+    // Xorshift algorithm from George Marsaglia's paper
+    rng_state ^= (rng_state << 13);
+    rng_state ^= (rng_state >> 17);
+    rng_state ^= (rng_state << 5);
+    return rng_state;
+}
+
+float randomFloat()
+{
+    return float(rand_xorshift()) * (1.0 / 4294967296.0);
+}
+
+void spawn(uint id)
+{
+    float x = randomFloat() * 2 - 1;
+    float y = randomFloat() * 2 - 1;
+    float z = randomFloat() * 2 - 1;
+
+    _Particles[id].position = float3(x, y, z);
+    _Particles[id].velocity = _initialVelocity;
+    _Particles[id].age = randomFloat() * _maxAge;
+}
+
+// Cohesion
+float nSize_Cohesion;
+float attractionFactor;
+
+// Separation
+float nSize_Separation;
+float repulsionFactor;
+
+// Alignment
+float alignmentFactor;
+
+[numthreads(128,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    Particle particle = _Particles[id.x];
+
+    // cohesion : add a velocity based on the center of all boids in a neighborhod. needs a parameter for neighborhood size and attraction factor.
+
+    int neighbors = 0; // find all neighbors within threshold
+    for (int i = 0; i < _numParticles; i++) {
+
+        if (i == id.x) continue;
+
+        if (distance(_Particles[i].position, particle.position) > nSize_Cohesion) {
+            neighbors++;
+        }
+    }
+
+    float3 cohesionCenter = float3(0,0,0);
+
+    if (neighbors > 0) {
+        cohesionCenter /= neighbors; // average position
+        
+        float3 dir = cohesionCenter - particle.position;
+        particle.velocity += dir * attractionFactor;
+    }
+
+    // seperation : add a velocity based on the center of all boids in a neighborhod. needs a parameter for neighborhood size and repulsion factor.
+
+    float3 separationDir = float3(0, 0, 0);
+    neighbors = 0;
+    for (int i = 0; i < _numParticles; i++) {
+
+        if (i == id.x) continue;
+
+        if (distance(_Particles[i].position, particle.position) < nSize_Separation) {
+            separationDir += normalize(particle.position - _Particles[i].position);
+            neighbors++;
+        }
+    }
+
+    if (neighbors > 0) {
+        separationDir /= neighbors; // avg
+        particle.velocity += separationDir * repulsionFactor;
+    }
+
+    // alignment : movement direction (not speed) is influenced by neighbors direction. needs a alignment factor parameter.
+
+    float3 averageDir = float3(0, 0, 0);
+
+    neighbors = 0;
+    for (int i = 0; i < _numParticles; i++) {
+
+        if (i == id.x) continue;
+
+        if (distance(_Particles[i].position, particle.position) > EPS) {
+            averageDir += normalize(_Particles[i].velocity); 
+            neighbors++;
+        }
+    }
+
+    if (neighbors > 0) {
+        averageDir /= neighbors;
+
+        float3 dir = lerp(normalize(particle.velocity), averageDir, alignmentFactor); // lerp(currentOrientation, neighborAvgOrientation, 0.5);
+        _Particles[id.x].velocity = dir * length(particle.velocity);
+    }
+
+
+    // actually apply vel & drag
+
+    particle.velocity *= _drag;
+    particle.position += particle.velocity * _dt;
+
+    // The world should wrap so that the boid particles are always between 0 - 20 units in the x,y, and z dimensions.
+    if (particle.position.x > 20) {
+        particle.position.x -= 20;
+    }
+    if (particle.position.x < 0) {
+        particle.position.x += 20;
+    }
+
+    if (particle.position.y > 20) {
+        particle.position.y -= 20;
+    }
+
+    if (particle.position.y < 0) {
+        particle.position.y += 20;
+    }
+
+    if (particle.position.z > 20) {
+        particle.position.z -= 20;
+    }
+
+    if (particle.position.z < 0) {
+        particle.position.z += 20;
+    }
+}

@@ -3,6 +3,8 @@
     Properties
     {
         _Color("MainColor", Color) = (1, 0, 0, 1)
+        _SecColor("SecColor", Color) = (1, 0, 0, 1)
+        _Tex("Texture", 2D) = "white" {}
     }
     SubShader
     {
@@ -34,6 +36,10 @@
 
             StructuredBuffer<Particle> _Particles;
 
+            fixed4 _Color;
+            fixed4 _SecColor;
+            float _MaxAge;
+
             v2f vert (uint vertex_id : SV_VertexID, uint instance_id : SV_InstanceID)
             {
                 v2f output = (v2f)0;
@@ -41,15 +47,17 @@
                 float3 pos = _Particles[instance_id].position;
 
                 output.vertex = UnityObjectToClipPos(float4(pos, 1));
+                output.color = lerp(_Color, _SecColor, _Particles[instance_id].life / _MaxAge);
 
                 return output;
             }
-
-            fixed4 _Color;
+            
+            sampler2D _Tex;
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return _Color;
+                fixed4 col = tex2D(_Tex, i.vertex/500);
+                return col;
             }
             ENDCG
         }

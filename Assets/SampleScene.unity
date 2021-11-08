@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingSettings: {fileID: 4890085278179872738, guid: be5a1535a1dec4543ac92dc32bb061de,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,6 +119,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -197,6 +200,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &705507995
@@ -325,14 +329,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c60a6d8f5ea234fa02ec3e09ec04dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numParticles: 1000000
-  _maxAge: 2.23
+  _numParticles: 100000
+  _maxAge: 4.61
   _initialVelocity: {x: 0, y: 1.2, z: 0}
   _particleMaterial: {fileID: 2100000, guid: ed294403ecb55f14281bbfafa7fc3c8f, type: 2}
   _particleSimulation: {fileID: 7200000, guid: 09c97158d3907f8458966e0faa449536, type: 3}
-  _noiseAmplitude: 7.08
-  _noiseFrequency: 1.06
-  _noiseSpeed: 0.1
+  _noiseAmplitude: 42.3
+  _noiseFrequency: 3.2
+  _noiseSpeed: 3.14
+  _cohesionRadius: 5.07
+  _attractionFactor: 3.62
+  _separationRadius: 2.9
+  _repulsionFactor: 4.27
+  _alignmentFactor: 8.33
   _drag: 0.705
 --- !u!4 &1594953471
 Transform:
