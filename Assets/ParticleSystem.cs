@@ -27,13 +27,13 @@ public class ParticleSystem : MonoBehaviour
     [SerializeField] public float _noiseFrequency;
     [SerializeField] public float _noiseSpeed;
 
-    [SerializeField, Range(0.1f, 10)] public float _cohesionRadius;
-    [SerializeField, Range(0.1f, 10)] public float _attractionFactor;
+    [SerializeField, Range(0.1f, 10)] public float nSize_Cohesion;
+    [SerializeField, Range(0.1f, 10)] public float attractionFactor;
 
-    [SerializeField, Range(0.1f, 10)] public float _separationRadius;
-    [SerializeField, Range(0.1f, 10)] public float _repulsionFactor;
+    [SerializeField, Range(0.1f, 10)] public float nSize_Separation;
+    [SerializeField, Range(0.1f, 10)] public float repulsionFactor;
 
-    [SerializeField, Range(0.1f, 10)] public float _alignmentFactor;
+    [SerializeField, Range(0.1f, 10)] public float alignmentFactor;
 
     [SerializeField, Range(0.1f, 1f)] public float _drag;
 
@@ -82,7 +82,7 @@ public class ParticleSystem : MonoBehaviour
         _particleSimulation.SetFloat("_dt", Time.deltaTime);
         _particleSimulation.SetFloat("_time", Time.time);
         _particleSimulation.SetFloat("_maxAge", _maxAge);
-        _particleMaterial.SetFloat("_MaxAge", _maxAge);
+        _particleMaterial.SetFloat("_maxAge", _maxAge);
         _particleSimulation.SetVector("_initialVelocity", _initialVelocity);
 
         _particleSimulation.SetFloat("_noiseAmplitude", _noiseAmplitude);
@@ -90,13 +90,12 @@ public class ParticleSystem : MonoBehaviour
         _particleSimulation.SetFloat("_noiseSpeed", _noiseSpeed);
         _particleSimulation.SetFloat("_drag", _drag);
 
-        _particleSimulation.SetFloat("nSize_Cohesion", _cohesionRadius);
-        _particleSimulation.SetFloat("attractionFactor", _attractionFactor);
+        _particleSimulation.SetFloat("nSize_Cohesion", nSize_Cohesion);
+        _particleSimulation.SetFloat("attractionFactor", attractionFactor);
+        _particleSimulation.SetFloat("nSize_Separation", nSize_Separation);
+        _particleSimulation.SetFloat("repulsionFactor", repulsionFactor);
+        _particleSimulation.SetFloat("alignmentFactor", alignmentFactor);
 
-        _particleSimulation.SetFloat("nSize_Separation", _separationRadius);
-        _particleSimulation.SetFloat("repulsionFactor", _repulsionFactor);
-
-        _particleSimulation.SetFloat("alignmentFactor", _alignmentFactor);
         _particleSimulation.SetInt("_numParticles", _numParticles);
 
         _particleSimulation.Dispatch(_kernelId, Mathf.CeilToInt((float)_numParticles / 128f), 1, 1);

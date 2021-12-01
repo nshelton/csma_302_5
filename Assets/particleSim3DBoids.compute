@@ -66,97 +66,98 @@ float alignmentFactor;
 [numthreads(128,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    Particle particle = _Particles[id.x];
-
-    // cohesion : add a velocity based on the center of all boids in a neighborhod. needs a parameter for neighborhood size and attraction factor.
-
-    int neighbors = 0; // find all neighbors within threshold
-    for (int i = 0; i < _numParticles; i++) {
-
-        if (i == id.x) continue;
-
-        if (distance(_Particles[i].position, particle.position) > nSize_Cohesion) {
-            neighbors++;
-        }
-    }
-
-    float3 cohesionCenter = float3(0,0,0);
-
-    if (neighbors > 0) {
-        cohesionCenter /= neighbors; // average position
-        
-        float3 dir = cohesionCenter - particle.position;
-        particle.velocity += dir * attractionFactor;
-    }
+    float3 separationDir = float3(0, 0, 0);
+    float neighbors = 0;
 
     // seperation : add a velocity based on the center of all boids in a neighborhod. needs a parameter for neighborhood size and repulsion factor.
-
-    float3 separationDir = float3(0, 0, 0);
-    neighbors = 0;
     for (int i = 0; i < _numParticles; i++) {
-
         if (i == id.x) continue;
-
-        if (distance(_Particles[i].position, particle.position) < nSize_Separation) {
-            separationDir += normalize(particle.position - _Particles[i].position);
+            
+        float dist = distance(_Particles[id.x].position, _Particles[i].position);
+        
+        if(dist < nSize_Separation){
+            separationDir += normalize(_Particles[id.x].position - _Particles[i].position);
             neighbors++;
         }
     }
 
-    if (neighbors > 0) {
-        separationDir /= neighbors; // avg
-        particle.velocity += separationDir * repulsionFactor;
+    if(neighbors > 0){
+        separationDir = separationDir /= neighbors;
+        _Particles[id.x].velocity += separationDir * repulsionFactor;
+    }
+
+    // cohesion : add a velocity based on the center of all boids in a neighborhod. needs a parameter for neighborhood size and attraction factor.
+    float3 cohesionCenter = float3(0, 0, 0);
+    neighbors = 0;
+
+    for (int i = 0; i < _numParticles; i++) {
+        if (i == id.x) continue;
+            
+        float dist = distance(_Particles[id.x].position, _Particles[i].position);
+        
+        if(dist < nSize_Cohesion){
+            cohesionCenter += _Particles[i].position;
+            neighbors++;
+        }
+    }
+
+    if(neighbors > 0){
+        cohesionCenter = cohesionCenter /= neighbors;
+        if(distance(cohesionCenter, _Particles[id.x].position) > 0.00001){
+            float3 dir = cohesionCenter - _Particles[id.x].position; 
+            _Particles[id.x].velocity += dir * attractionFactor;
+        }
     }
 
     // alignment : movement direction (not speed) is influenced by neighbors direction. needs a alignment factor parameter.
-
     float3 averageDir = float3(0, 0, 0);
 
     neighbors = 0;
     for (int i = 0; i < _numParticles; i++) {
-
-        if (i == id.x) continue;
-
-        if (distance(_Particles[i].position, particle.position) > EPS) {
-            averageDir += normalize(_Particles[i].velocity); 
+        float dist = distance(_Particles[id.x].position, _Particles[i].position);
+            
+        if(dist < nSize_Cohesion){
+            averageDir += normalize(_Particles[i].velocity);
             neighbors++;
         }
     }
 
-    if (neighbors > 0) {
+    if(neighbors > 0) {
         averageDir /= neighbors;
 
-        float3 dir = lerp(normalize(particle.velocity), averageDir, alignmentFactor); // lerp(currentOrientation, neighborAvgOrientation, 0.5);
-        _Particles[id.x].velocity = dir * length(particle.velocity);
+        float3 dir = normalize(_Particles[id.x].velocity);
+        float3 s = length(_Particles[id.x].velocity);
+
+        dir = lerp(dir, averageDir, alignmentFactor);
+
+        _Particles[id.x].velocity = dir * s;
     }
-
-
-    // actually apply vel & drag
-
-    particle.velocity *= _drag;
-    particle.position += particle.velocity * _dt;
 
     // The world should wrap so that the boid particles are always between 0 - 20 units in the x,y, and z dimensions.
-    if (particle.position.x > 20) {
-        particle.position.x -= 20;
-    }
-    if (particle.position.x < 0) {
-        particle.position.x += 20;
+    _Particles[id.x].position += _Particles[id.x].velocity *_dt;
+    _Particles[id.x].velocity *= _drag;
+
+    if(_Particles[id.x].position.x > 20) {
+        _Particles[id.x].position.x -= 20;
     }
 
-    if (particle.position.y > 20) {
-        particle.position.y -= 20;
+    if(_Particles[id.x].position.x < 0) {
+        _Particles[id.x].position.x += 20;
     }
 
-    if (particle.position.y < 0) {
-        particle.position.y += 20;
+    if(_Particles[id.x].position.y > 20) {
+        _Particles[id.x].position.y -= 20;
     }
 
-    if (particle.position.z > 20) {
-        particle.position.z -= 20;
+    if(_Particles[id.x].position.y < 0) {
+        _Particles[id.x].position.y += 20;
     }
 
-    if (particle.position.z < 0) {
-        particle.position.z += 20;
+    if(_Particles[id.x].position.z > 20) {
+        _Particles[id.x].position.z -= 20;
+    }
+
+    if(_Particles[id.x].position.z < 0) {
+        _Particles[id.x].position.z += 20;
     }
 }

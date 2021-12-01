@@ -294,7 +294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 9.6, y: 9.3, z: -15.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -329,20 +329,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c60a6d8f5ea234fa02ec3e09ec04dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numParticles: 100000
-  _maxAge: 4.61
-  _initialVelocity: {x: 0, y: 1.2, z: 0}
+  _numParticles: 7646
+  _maxAge: 8.29
+  _initialVelocity: {x: 0, y: 0, z: 0}
   _particleMaterial: {fileID: 2100000, guid: ed294403ecb55f14281bbfafa7fc3c8f, type: 2}
-  _particleSimulation: {fileID: 7200000, guid: 09c97158d3907f8458966e0faa449536, type: 3}
-  _noiseAmplitude: 42.3
-  _noiseFrequency: 3.2
-  _noiseSpeed: 3.14
-  _cohesionRadius: 5.07
-  _attractionFactor: 3.62
-  _separationRadius: 2.9
-  _repulsionFactor: 4.27
-  _alignmentFactor: 8.33
-  _drag: 0.705
+  _particleSimulation: {fileID: 7200000, guid: d4de2e23f7299ea4abb69da9a9ca1cf9, type: 3}
+  _noiseAmplitude: 5.92
+  _noiseFrequency: 0.29
+  _noiseSpeed: 0.43
+  nSize_Cohesion: 3.1
+  attractionFactor: 0.72
+  nSize_Separation: 6.11
+  repulsionFactor: 5.64
+  alignmentFactor: 1.34
+  _drag: 0.637
 --- !u!4 &1594953471
 Transform:
   m_ObjectHideFlags: 0
